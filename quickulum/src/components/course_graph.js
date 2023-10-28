@@ -1,8 +1,8 @@
 /** @format */
 import * as d3 from "d3";
 
-function drawGraph(nodes, links) {
-  const svg = d3.select("#graph");
+function drawGraph(elementId, nodesData, linksData) {
+  const svg = d3.select(elementId);
   const width = parseInt(svg.attr("width"));
   const height = parseInt(svg.attr("height"));
 
@@ -11,10 +11,10 @@ function drawGraph(nodes, links) {
   const creditsScale = d3.scaleLinear().domain([1, 5]).range([5, 25]);
   // create a force simulation
   const simulation = d3
-    .forceSimulation(nodes)
+    .forceSimulation(nodesData)
     .force(
       "link",
-      d3.forceLink(links).id((d) => d.id)
+      d3.forceLink(linksData).id((d) => d.id)
     )
     .force("charge", d3.forceManyBody().strength(100))
     .force("collide", d3.forceCollide(65))
@@ -37,13 +37,44 @@ function drawGraph(nodes, links) {
     .append("svg:path")
     .attr("d", "M 0 0 L 8 4 L 0 8 z");
 
+  // create nodes
+  const nodes = svg
+    .append("g")
+    .attr("fill", "currentColor")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-linejoin", "round")
+    .selectAll("circle")
+    .data(nodesData)
+    .join("circle")
+    .attr("r", (d) => creditsScale(d.credits))
+    .attr("fill", (d) => color(d.id.split(" ")[0]))
+    .call(drag(simulation))
+    .on("mouseover", function (event, d) {
+      // When the mouse goes over a node
+      return tooltip
+        .text(d.title)
+        .style("color", "red")
+        .style("visibility", "visible");
+    })
+    .on("mousemove", function (event) {
+      return tooltip
+        .style("top", event.pageY - 10 + "px")
+        .style("left", event.pageX + 10 + "px");
+    })
+    .on("mouseout", function () {
+      return tooltip.style("visibility", "hidden");
+    })
+    .on("click", function (event, d) {
+      window.open(d.url);
+    }); // Hide the tooltip when the mouse is no longer over a node;
+
   // Add the links as path elements with arrowhead markers
-  const link = svg
+  const links = svg
     .append("g")
     .selectAll("line")
-    .data(links)
+    .data(linksData)
     .join("line")
-    .attr("stroke", d => {
+    .attr("stroke", (d) => {
       if (d.group === 0) {
         return "red";
       } else if (d.group === 1) {
@@ -56,7 +87,7 @@ function drawGraph(nodes, links) {
     })
     .attr("stroke-width", 3)
     .attr("marker-end", "url(#end)")
-    .attr("stroke-dasharray", d => (d.type === "coreq" ? "5,5" : null));
+    .attr("stroke-dasharray", (d) => (d.type === "coreq" ? "5,5" : null));
 
   // Create a tooltip div that is hidden by default:
   const tooltip = d3
@@ -70,44 +101,11 @@ function drawGraph(nodes, links) {
     .style("border-width", "1px")
     .style("border-radius", "5px")
     .style("padding", "10px");
-    
-  // create nodes
-  const node = svg
-    .append("g")
-    .attr("fill", "currentColor")
-    .attr("stroke-linecap", "round")
-    .attr("stroke-linejoin", "round")
-    .selectAll("circle")
-    .data(nodes)
-    .join("circle")
-    .attr("r", (d) => creditsScale(d.credits))
-    .attr("fill", (d) => color(d.id.split(" ")[0]))
-    .call(drag(simulation))
-    .on("mouseover", function (event, d) {
-      // When the mouse goes over a node
-      return tooltip
-        .text(d.title)
-        .style("color", "red")
-        .style("visibility", "visible");
-    })
-    .on("mousemove", function (event) {
-      return tooltip  
-        .style("top", event.pageY - 10 + "px")
-        .style("left", event.pageX + 10 + "px");
-    })
-    .on("mouseout", function () {
-      return tooltip.style("visibility", "hidden");
-    })
-    .on("click", 
-      function (event, d) {
-        window.open(d.url);
-      }
-    ); // Hide the tooltip when the mouse is no longer over a node;
 
   const labels = svg
     .append("g")
     .selectAll("text")
-    .data(nodes)
+    .data(nodesData)
     .enter()
     .append("text")
     .text(function (d) {
@@ -119,12 +117,12 @@ function drawGraph(nodes, links) {
     .style("font-size", 12);
 
   // add titles to nodes
-  node.append("title").text((d) => d.id);
+  nodes.append("title").text((d) => d.id);
 
   // add tick function
   simulation.on("tick", () => {
     const newLocal = "y2";
-    link
+    links
       .attr("x1", (d) => d.source.x)
       .attr("y1", (d) => d.source.y)
       .attr(
@@ -146,7 +144,7 @@ function drawGraph(nodes, links) {
             )
       );
 
-    node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+    nodes.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
     labels.attr("x", (d) => d.x + 50).attr("y", (d) => d.y);
   });
 
