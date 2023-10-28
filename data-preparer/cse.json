@@ -1,0 +1,63 @@
+{
+    "CSE-6429": {
+        "classNumber": "6429",
+        "department": "CSE",
+        "name": "Advanced Studies in Computer Architecture",
+        "dependencies": [
+            "\n\nReturn value:\n[[\"None\""
+        ],
+        "credits": 3
+    },
+    "CSE-1223": {
+        "classNumber": "1223",
+        "department": "CSE",
+        "name": "Introduction to Computer Programming in Java",
+        "dependencies": [
+            "\n[[\"Math-1130\"",
+            " \"Math-1140\"",
+            " \"Math"
+        ],
+        "credits": 3
+    },
+    "CSE-2123": {
+        "classNumber": "2123",
+        "department": "CSE",
+        "name": "Data Structures Using Java",
+        "dependencies": [
+            "\n\n[[\"CSE-1223\""
+        ],
+        "credits": 3
+    },
+    "CSE-2221": {
+        "classNumber": "2221",
+        "department": "CSE",
+        "name": "Software I: Software Components",
+        "dependencies": [
+            "\n\nCSE-1212",
+            " CSE-1221",
+            " CSE-"
+        ],
+        "credits": 4
+    },
+    "CSE-3901": {
+        "classNumber": "3901",
+        "department": "CSE",
+        "name": "Project: Design, Development, and Documentation of Web Applications",
+        "dependencies": [
+            "\n[[CSE-2231]",
+            " [CSE-2321]",
+            " "
+        ],
+        "credits": 4
+    },
+    "CSE-5231": {
+        "classNumber": "5231",
+        "department": "CSE",
+        "name": "Software Engineering Techniques",
+        "dependencies": [
+            "\n\nReturn value:\n\n[[\"CSE-3901\"]",
+            " [\"CSE-"
+        ],
+        "credits": 2
+    }
+}

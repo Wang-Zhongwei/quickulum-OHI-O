@@ -1,0 +1,23 @@
+Convert a string which is the text description of prerequisites for a computer science and engineering course into a list of lists. In this list of lists, class codes should be grouped using boolean logic. A group of classes in the inner list represent different options for filling one prerequisite, while the outer list contains each set of classes a student can choose from. Use the provided examples as guidelines for the correct format. Do not count concurrent classes. DO NOT put the words "OR" and "AND" in the output.
+
+Example 1:
+
+Input:
+Intellectual foundations of software engineering; design-by-contract principles; mathematical modeling of software functionality; component-based software from client perspective; layered data representation.\nPrereq: 1212, 1221, 1222, 1223, 1224, Engr 1221, 1281.01H, 1281.02H, or CSE Placement Level A. Prereq or concur: Math 1151, 1161.01, or 1161.02. Not open to students with credit for 5022. This course is available for EM credit.
+
+Output value:
+[["CSE-1212", "CSE-1221", "CSE-1222", "CSE-1223", "CSE-1224", "Engr-1221", "Engr-1281.01H", "Engr-1281.02H"]]
+
+Output 2:
+Intensive group project involving design, development, and documentation of a web application; client-side and server-side scripting; communication skills emphasized; builds programming maturity.
+Prereq: 2231; and 2321; and 2421 or 3430, or 2451 and ECE 2560; and enrollment in CSE, CIS, ECE, or Data Analytics major.
+
+Return value:
+[["CSE-2231"], ["CSE-2321"], ["CSE-2421", "CSE-3430"], ["CSE-2421", "ECE-2560"]]
+
+Please do not provide code for example usage. Return only the list of lists as text, not code, and do not say anything else. Your prompt is: 
+
+"\n\nReturn value:\n[[\"CSE-1212\"",
+            " \"C"
+    
+This is an example of what not to provide. I don't want any newline characters. I don't want any \" characters. I only want the list. Provide the list on a single line.

@@ -43,7 +43,9 @@ function isClassId(data) {
     return regex.test(data);
 }
 
-const prereqPrompt = require('./prereqPrompt.txt');
+// const prereqPrompt = ('./prereqPrompt.txt');
+const reader = new FileReader();
+const prereqPrompt = (reader.readAsText('./prereqPrompt.txt'));
 async function getPrerquisites(description) {
     const response = await openai.complete({
         model: 'gpt-3.5-turbo',
