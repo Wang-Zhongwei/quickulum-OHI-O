@@ -1,0 +1,10 @@
+Write a program that converts the given text description of prerequisites for a physics course into a more readable and organized format. The text contains information about the course, its prerequisites, and concurrent requirements. The output should be a list of prerequisites with their respective course codes separated by a '|' and '&' to indicate alternatives and combinations, respectively. Use the provided example as a guideline for the correct format.
+
+Example:
+
+Input:
+PHYSICS; Calculus-based introduction to electricity and magnetism, waves, simple optics, and quantum mechanics; for students in physical sciences, mathematics, engineering.\nPrereq: 1250, 1250H, 1260, or 1270; and Math 1141, 1151, 1154, or above; or permission of instructor. Concur: Math 1152, 1155, 1161, 1172, 1181H, or 4181H. This course is available for EM credit. GE nat sci phys course.
+
+Output:
+Prereq:
+(PHYSICS 1250 | PHYSICS 1250H | PHYSICS 1260 | PHYSICS 1270) & (Math 1141 | Math 1151 | Math 1154)
