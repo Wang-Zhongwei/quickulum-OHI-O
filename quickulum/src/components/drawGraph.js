@@ -1,7 +1,13 @@
 /** @format */
 import * as d3 from "d3";
 
-function drawGraph(className, nodesData, linksData, handleNodeClick) {
+function drawGraph(
+  className,
+  nodesData,
+  linksData,
+  handleNodeClick,
+  options = {}
+) {
   const svg = d3.select(className);
   const rect = svg.node().getBoundingClientRect();
   const width = parseInt(rect.width);
@@ -11,16 +17,38 @@ function drawGraph(className, nodesData, linksData, handleNodeClick) {
   const color = d3.scaleOrdinal(d3.schemeCategory10);
   const creditsScale = d3.scaleLinear().domain([1, 5]).range([5, 25]);
   // create a force simulation
+
+  const minThreshold = 300;
+  // const maxThreshold = 300;
+  const minDistance = 100;
+  const strengthRepulsion = 30;
+  const strengthAttraction = 18;
+
   const simulation = d3
     .forceSimulation(nodesData)
     .force(
       "link",
-      d3.forceLink(linksData).id((d) => d.id)
+      d3
+        .forceLink(linksData)
+        .id((d) => d.id)
+        .distance(130)
     )
-    .force("charge", d3.forceManyBody().strength(100))
-    .force("collide", d3.forceCollide(65))
-    .force("center", d3.forceCenter(width / 2, height / 2));
+    .force(
+      "charge",
+      d3
+        .forceManyBody()
+        .strength((d) => {
+          if (d.distance < minThreshold) {
+            return -strengthRepulsion; // repel if too close
+          } else {
+            return +strengthAttraction; // attract if too far
+          } 
+        })
+        .distanceMin(minDistance)
+    )
 
+    .force("collide", d3.forceCollide(50))
+    .force("center", d3.forceCenter(width / 2, height / 2).strength(0.3));
   svg
     .append("defs")
     .selectAll("marker")
@@ -28,16 +56,16 @@ function drawGraph(className, nodesData, linksData, handleNodeClick) {
     .enter()
     .append("marker") // This section adds in the arrows
     .attr("id", String)
-    .attr("viewBox", "0 0 8 8")
-    .attr("refX", 8) // Controls the shift of the arrowhead along the path
-    .attr("refY", 4)
-    .attr("markerWidth", 4)
-    .attr("markerHeight", 4)
+    .attr("viewBox", "0 0 6 6")
+    .attr("refX", 6) // Controls the shift of the arrowhead along the path
+    .attr("refY", 3)
+    .attr("markerWidth", 3)
+    .attr("markerHeight", 3)
     .attr("orient", "auto")
     .attr("fill", "#666")
     .append("svg:path")
-    .attr("d", "M 0 0 L 8 4 L 0 8 z");
-  
+    .attr("d", "M 0 0 L 6 3 L 0 6 z");
+
   // define filters
   const defs = svg.append("defs");
 
@@ -74,7 +102,6 @@ function drawGraph(className, nodesData, linksData, handleNodeClick) {
   feMerge.append("feMergeNode").attr("in", "shadowWithColor");
   feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-
   // define gradients
   const gradient = defs
     .append("linearGradient")
@@ -96,20 +123,31 @@ function drawGraph(className, nodesData, linksData, handleNodeClick) {
     .attr("stop-color", "#fe5196") // End color
     .attr("stop-opacity", 1);
 
-
-
   // create nodes
   const nodes = svg
     .append("g")
     .attr("fill", "currentColor")
     .attr("stroke-linecap", "round")
     .attr("stroke-linejoin", "round")
+    .attr("cursor", "pointer")
     .selectAll("circle")
     .data(nodesData)
     .join("circle")
-    .attr("opacity", 0.6) // Initial opacity for all nodes
+    .attr("opacity", 0.4) // Initial opacity for all nodes
     .attr("r", (d) => creditsScale(d.credits))
-    .attr("fill", (d) => color(d.id.split(" ")[0]))
+    .attr("fill", (d) => {
+      const words = d.id.split("-");
+      switch (options?.colorRank) {
+        case "department":
+          return color(words[0]);
+
+        case "courseNumber":
+          return color(words[1].charAt(0));
+
+        default:
+          return color(words[1].charAt(0));
+      }
+    })
     .call(drag(simulation))
     .on("mouseover", function (event, d) {
       // When the mouse goes over a node
@@ -141,13 +179,13 @@ function drawGraph(className, nodesData, linksData, handleNodeClick) {
     .join("line")
     .attr("stroke", (d) => {
       if (d.group === 0) {
-        return "red";
+        return "rgba(221, 104, 180, 0.42)"; // Red with 50% opacity
       } else if (d.group === 1) {
-        return "green";
+        return "rgba(128, 221, 165, 0.42)"; // Green with 50% opacity
       } else if (d.group === 2) {
-        return "blue";
+        return "rgba(231, 127, 57, 0.42)"; // Blue with 50% opacity
       } else {
-        return "#666";
+        return "rgba(102, 102, 102, 0.58)"; // Gray with 50% opacity
       }
     })
     .attr("stroke-width", 3)

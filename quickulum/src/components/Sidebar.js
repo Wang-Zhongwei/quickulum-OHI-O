@@ -3,7 +3,7 @@
 import React from "react";
 import "./Sidebar.css";
 
-function Sidebar({ selectedNodes }) {
+function Sidebar({ selectedNodes, setShowSchedule }) {
   const [creditGoal, setCreditGoal] = React.useState(15);
 
   const totalCredits = selectedNodes.reduce(
@@ -26,6 +26,7 @@ function Sidebar({ selectedNodes }) {
           <div className="container">
             <ul>
               {selectedNodes.map((node) => (
+                // TODO: add separation between
                 <li key={node.id}>{node.title}</li>
               ))}
             </ul>
@@ -51,6 +52,7 @@ function Sidebar({ selectedNodes }) {
             className={isGenerateDisabled ? "" : "enabled"}
             onClick={() => {
               console.log("Generate schedule button clicked");
+              setShowSchedule(true);
             }}
           >
             Generate Schedule

@@ -2,12 +2,16 @@
 
 import drawGraph from "./drawGraph.js";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./Graph.css";
 
+// TODO: add legends
+// TODO: hide edge behind nodes
+// TODO: fix black box border in the sidebar
 function Graph(props) {
   const setSelectedNodes = props.setSelectedNodes;
+  const [colorRank, setColorRank] = useState("department");
 
   function handleNodeClick(node, clickedElement) {
     setSelectedNodes((currentSelectedNodes) => {
@@ -20,22 +24,64 @@ function Graph(props) {
         return currentSelectedNodes.filter((n) => n.id !== node.id);
       } else {
         // If the node is not selected, select it
+        
         nodeElement.attr("opacity", 1); // Full opacity for selected node
-        nodeElement.style("filter", "url(#dropshadow)"); // Apply drop shadow
+        nodeElement.style("filter", "url(#dropshadow)"); // Apply drop shadow filter
         return [...currentSelectedNodes, node];
       }
     });
   }
 
-
   useEffect(() => {
     console.log("useEffect is running");
-    drawGraph(".graph", props?.nodes, props?.links, handleNodeClick);
-  }, []);
+
+    // Draw the graph
+    drawGraph(".graph", props?.nodes, props?.links, handleNodeClick, {
+      colorRank: colorRank,
+    });
+
+    // Return a cleanup function
+    return () => {
+      d3.select(".graph").selectAll("*").remove(); // This removes all child elements of the SVG
+    };
+  }, [colorRank]);
 
   return (
     <div className="canvas">
-      <svg className="graph" width={1000} height={1000}></svg>
+      {/* <button className="toggle-button" onClick={toggleColorRank}>
+        Toggle Color Rank: {colorRank}
+      </button> */}
+
+      <div className="toggle-container">
+        <div>
+          <div className="label">Color Rank</div>
+          <div className="toggle-button">
+            <button
+              className={`toggle-option ${
+                colorRank === "department" ? "active" : ""
+              }`}
+              onClick={() => setColorRank("department")}
+            >
+              Department
+            </button>
+            <button
+              className={`toggle-option ${
+                colorRank === "courseNumber" ? "active" : ""
+              }`}
+              onClick={() => setColorRank("courseNumber")}
+            >
+              Course Number
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* TODO: scrollable canvas */}
+      {/* TODO: not hard code width and height */}
+      <div className="graph-container">
+        <svg className="graph"></svg>
+      </div>
+      {/* TODO: leave area on bottom for schedule visualization*/}
     </div>
   );
 }

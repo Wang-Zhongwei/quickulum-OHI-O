@@ -1,11 +1,14 @@
 .sidebar {
-  width: 20%;
+  width: 17%;
   padding: 20px;
+  height: 100%;
   border-radius: 0 1.5% 1.5% 0;
   border-width: 2px;  
   flex-direction: column;
   background-color: rgb(43, 45, 45);
   border-right: 0.5px solid #555;
+  overflow: scroll;
+  z-index: 1;
 }
 
 .sidebar h2 {
@@ -30,7 +33,8 @@
   margin-top: 20px;
   border-top: 1px solid #777;
   transition: "background-color 0.5s ease";
-  padding-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;  /*change this later*/
   flex-grow: 1;
 
 }
@@ -44,6 +48,7 @@
   flex-direction: column;
   padding: 8px;
   align-items: left;
+  margin-bottom: 50px;
 }
 
 .goal label {
@@ -62,7 +67,7 @@
   padding: 10px 20px;
   cursor: not-allowed;
   width: 100%;
-  margin: 5px;
+  margin: 3px;
 }
 
 .generate button.enabled {
