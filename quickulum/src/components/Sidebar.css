@@ -81,7 +81,7 @@
 
 .container {
   padding: 8px;
-  border-radius: 8%;
+  border-radius: 5%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

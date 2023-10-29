@@ -95,8 +95,9 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
           <div className="container">
             <ul>
               {selectedNodes.map((node) => (
-                // TODO: add separation between
-                <li key={node.id}>{node.title}</li>
+                <li key={node.id} style={{ marginBottom: '10px' }}>
+                  {node.id} ({node.title})
+                </li>
               ))}
             </ul>
           </div>
@@ -121,7 +122,7 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
             className={isGenerateDisabled ? "" : "enabled"}
             onClick={() => {
               if (isGenerateDisabled) return;
-              setSchedule(generateSchedule(selectedNodes)); // TODO: check this
+              setSchedule(generateSchedule(selectedNodes)); 
               console.log("Schedule generated");
               setShowSchedule(true);
             }}
@@ -133,5 +134,6 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
     </div>
   );
 }
+
 
 export default Sidebar;

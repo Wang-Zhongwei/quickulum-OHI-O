@@ -42,7 +42,7 @@ function drawGraph(
             return -strengthRepulsion; // repel if too close
           } else {
             return +strengthAttraction; // attract if too far
-          } 
+          }
         })
         .distanceMin(minDistance)
     )
@@ -171,6 +171,38 @@ function drawGraph(
       handleNodeClick(d, this);
     }); // Hide the tooltip when the mouse is no longer over a node;
 
+  let nodeLegendData = color.domain().map((d) => ({
+    value: d + "-xxx",
+    color: color(d),
+  }));
+
+  // 2. Create a group (`g`) element to hold the legend items.
+  const nodeLegend = svg.append("g").attr("transform", "translate(140, 10)"); // Adjust this to position the legend
+
+  // 3. Append circles for the color samples.
+  nodeLegend
+    .selectAll("circle")
+    .data(nodeLegendData)
+    .enter()
+    .append("circle")
+    .attr("cx", 0) // Adjust as needed
+    .attr("cy", (d, i) => i * 30 + 10) // 30 pixels space for each item
+    .attr("r", 8) // Adjust the radius as needed
+    .attr("fill", (d) => d.color)
+    .attr("opacity", 0.5);
+
+  // 4. Append text labels next to the circles.
+  nodeLegend
+    .selectAll("text")
+    .data(nodeLegendData)
+    .enter()
+    .append("text")
+    .attr("x", 10)
+    .attr("y", (d, i) => i * 30 + 10) // Align with the center of the circle
+    .text((d) => d.value)
+    .attr("dominant-baseline", "middle") // Vertically center the text
+    .attr("fill", "#ddd"); // Set the text color to white
+
   // Add the links as path elements with arrowhead markers
   const links = svg
     .append("g")
@@ -191,6 +223,40 @@ function drawGraph(
     .attr("stroke-width", 3)
     .attr("marker-end", "url(#end)")
     .attr("stroke-dasharray", (d) => (d.type === "coreq" ? "5,5" : null));
+
+  // 1. Define the legend's data.
+  const edgeLegendData = [
+    { color: "rgba(221, 104, 180, 0.5)", label: "Group 0" },
+    { color: "rgba(128, 221, 165, 0.5)", label: "Group 1" },
+    { color: "rgba(231, 127, 57, 0.5)", label: "Group 2" },
+    { color: "rgba(102, 102, 102, 0.6)", label: "Group 3" },
+  ];
+
+  const edgeLegend = svg.append("g").attr("transform", "translate(25, 10)");
+  // 3. Append lines for the color samples.
+  edgeLegend
+    .selectAll("line")
+    .data(edgeLegendData)
+    .enter()
+    .append("line")
+    .attr("x1", 0)
+    .attr("y1", (d, i) => i * 30 + 10) // +10 to position it in the middle of the space
+    .attr("x2", 20)
+    .attr("y2", (d, i) => i * 30 + 10) // +10 to position it in the middle of the space
+    .attr("stroke", (d) => d.color)
+    .attr("stroke-width", 2.5);
+
+  // 4. Adjust text labels to align next to the lines.
+  edgeLegend
+    .selectAll("text")
+    .data(edgeLegendData)
+    .enter()
+    .append("text")
+    .attr("x", 25)
+    .attr("y", (d, i) => i * 30 + 10) // +10 to position it in the middle of the space
+    .text((d) => d.label)
+    .attr("dominant-baseline", "middle") // Vertically center the text
+    .attr("fill", "#ddd"); // Set the text color to white
 
   // Create a tooltip div that is hidden by default:
   const tooltip = d3

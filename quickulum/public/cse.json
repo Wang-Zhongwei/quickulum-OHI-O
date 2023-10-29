@@ -520,9 +520,6 @@
         "department": "CSE",
         "name": "Intermediate Studies in Artificial Intelligence",
         "dependencies": [
-            [
-                "CSE-XXXX"
-            ]
         ],
         "credits": 2
     },
@@ -606,5 +603,124 @@
             []
         ],
         "credits": 1
+    },
+    "CSE-2122": {
+        "classNumber": "2122",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-2123": {
+        "classNumber": "2123",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-1221": {
+        "classNumber": "1221",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-1211": {
+        "classNumber": "1211",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-1212": {
+        "classNumber": "1212",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-1224": {
+        "classNumber": "1224",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-321": {
+        "classNumber": "321",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-3903": {
+        "classNumber": "3903",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-3430": {
+        "classNumber": "3430",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-2431": {
+        "classNumber": "2431",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-2133": {
+        "classNumber": "2133",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-2233": {
+        "classNumber": "2233",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-5331": {
+        "classNumber": "5331",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-5042": {
+        "classNumber": "5042",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-5521": {
+        "classNumber": "5521",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-3541": {
+        "classNumber": "3541",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
+    },
+    "CSE-5541": {
+        "classNumber": "5541",
+        "department": "CSE",
+        "name": "",
+        "dependencies": [],
+        "credits": 3
     }
 }

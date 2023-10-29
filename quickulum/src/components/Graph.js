@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./Graph.css";
 
-// TODO: add legends
+// TODO: rank by course number in legen
 // TODO: hide edge behind nodes
 // TODO: fix black box border in the sidebar
 function Graph(props) {
