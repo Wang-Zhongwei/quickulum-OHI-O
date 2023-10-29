@@ -1,10 +1,38 @@
 {
-    "CSE-6429": {
-        "classNumber": "6429",
+    "CSE-2321": {
+        "classNumber": "2321",
         "department": "CSE",
-        "name": "Advanced Studies in Computer Architecture",
+        "name": "Foundations I: Discrete Structures",
         "dependencies": [
-            "\n\nReturn value:\n[[\"None\""
+            [
+                "CSE-2122",
+                "CSE-2123"
+            ],
+            [
+                "Math-1151"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-2111": {
+        "classNumber": "2111",
+        "department": "CSE",
+        "name": "Modeling and Problem Solving with Spreadsheets and Databases",
+        "dependencies": [
+            [
+                "Math-1130"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-1222": {
+        "classNumber": "1222",
+        "department": "CSE",
+        "name": "Introduction to Computer Programming in C++ for Engineers and Scientists",
+        "dependencies": [
+            [
+                "CSE-1221"
+            ]
         ],
         "credits": 3
     },
@@ -13,18 +41,74 @@
         "department": "CSE",
         "name": "Introduction to Computer Programming in Java",
         "dependencies": [
-            "\n[[\"Math-1130\"",
-            " \"Math-1140\"",
-            " \"Math"
+            [
+                "Math-1130",
+                "Math-1140",
+                "Math-1149",
+                "Math-1150",
+                "Math-1151",
+                "Math-Placement Level L"
+            ]
         ],
         "credits": 3
     },
-    "CSE-2123": {
-        "classNumber": "2123",
+    "CSE-2231": {
+        "classNumber": "2231",
         "department": "CSE",
-        "name": "Data Structures Using Java",
+        "name": "Software II: Software Development and Design",
         "dependencies": [
-            "\n\n[[\"CSE-1223\""
+            [
+                "CSE-2221"
+            ]
+        ],
+        "credits": 4
+    },
+    "CSE-2193": {
+        "classNumber": "2193",
+        "department": "CSE",
+        "name": "Individual Studies in Computer Science and Engineering",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
+    },
+    "CSE-1111": {
+        "classNumber": "1111",
+        "department": "CSE",
+        "name": "Introduction to Computer-Assisted Problem Solving",
+        "dependencies": [
+            []
+        ],
+        "credits": 3
+    },
+    "CSE-6429": {
+        "classNumber": "6429",
+        "department": "CSE",
+        "name": "Advanced Studies in Computer Architecture",
+        "dependencies": [],
+        "credits": 1
+    },
+    "CSE-5052": {
+        "classNumber": "5052",
+        "department": "CSE",
+        "name": "Survey of Artificial Intelligence for Non-Majors",
+        "dependencies": [
+            [
+                "CSE-1211",
+                "CSE-1221",
+                "CSE-1222",
+                "CSE-1223",
+                "CSE-2221"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-1110": {
+        "classNumber": "1110",
+        "department": "CSE",
+        "name": "Introduction to Computing Technology",
+        "dependencies": [
+            []
         ],
         "credits": 3
     },
@@ -33,31 +117,494 @@
         "department": "CSE",
         "name": "Software I: Software Components",
         "dependencies": [
-            "\n\nCSE-1212",
-            " CSE-1221",
-            " CSE-"
+            [
+                "CSE-1212",
+                "CSE-1221",
+                "CSE-1222",
+                "CSE-1223",
+                "CSE-1224",
+                "Engr-1221",
+                "Engr-1281.01H",
+                "Engr-1281.02H"
+            ]
         ],
         "credits": 4
+    },
+    "CSE-2331": {
+        "classNumber": "2331",
+        "department": "CSE",
+        "name": "Foundations II: Data Structures and Algorithms",
+        "dependencies": [
+            [
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ],
+            [
+                "Stat-3460",
+                "Stat-3470"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-2421": {
+        "classNumber": "2421",
+        "department": "CSE",
+        "name": "Systems I: Introduction to Low-Level Programming and Computer Organization",
+        "dependencies": [
+            [
+                "CSE-2122",
+                "CSE-2123",
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321",
+                "Math-2566"
+            ]
+        ],
+        "credits": 4
+    },
+    "CSE-2451": {
+        "classNumber": "2451",
+        "department": "CSE",
+        "name": "Advanced C Programming",
+        "dependencies": [
+            [
+                "CSE-2221"
+            ],
+            [
+                "CSE-2231",
+                "CSE-321"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-2501": {
+        "classNumber": "2501",
+        "department": "CSE",
+        "name": "Social, Ethical, and Professional Issues in Computing",
+        "dependencies": [
+            [
+                "CSE-2122",
+                "CSE-2123",
+                "CSE-2231"
+            ]
+        ],
+        "credits": 1
+    },
+    "CSE-3241": {
+        "classNumber": "3241",
+        "department": "CSE",
+        "name": "Introduction to Database Systems",
+        "dependencies": [
+            [
+                "CSE-2123",
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-3341": {
+        "classNumber": "3341",
+        "department": "CSE",
+        "name": "Principles of Programming Languages",
+        "dependencies": [
+            [
+                "CSE-2231"
+            ],
+            [
+                "CSE-2331"
+            ],
+            [
+                "CSE-2421"
+            ],
+            [
+                "CSE-3901",
+                "CSE-3902",
+                "CSE-3903"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-3461": {
+        "classNumber": "3461",
+        "department": "CSE",
+        "name": "Computer Networking and Internet Technologies",
+        "dependencies": [
+            [
+                "CSE-2421"
+            ],
+            [
+                "CSE-3430"
+            ],
+            [
+                "CSE-2451",
+                "ECE-2560"
+            ],
+            [
+                "CSE-2431"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-3521": {
+        "classNumber": "3521",
+        "department": "CSE",
+        "name": "Survey of Artificial Intelligence I: Basic Techniques",
+        "dependencies": [
+            [
+                "CSE-2331"
+            ],
+            [
+                "Math-2174",
+                "Math-2568",
+                "Math-4568",
+                "Math-5520H"
+            ],
+            [
+                "Stat-3201",
+                "Stat-3450",
+                "Stat-3460",
+                "Stat-3470",
+                "Stat-4201",
+                "Math-4530",
+                "Math-5530H"
+            ]
+        ],
+        "credits": 3
     },
     "CSE-3901": {
         "classNumber": "3901",
         "department": "CSE",
         "name": "Project: Design, Development, and Documentation of Web Applications",
         "dependencies": [
-            "\n[[CSE-2231]",
-            " [CSE-2321]",
-            " "
+            [
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ],
+            [
+                "CSE-2421",
+                "CSE-3430"
+            ]
         ],
         "credits": 4
+    },
+    "CSE-3902": {
+        "classNumber": "3902",
+        "department": "CSE",
+        "name": "Project: Design, Development, and Documentation of Interactive Systems",
+        "dependencies": [
+            [
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ],
+            [
+                "CSE-2421",
+                "CSE-3430"
+            ]
+        ],
+        "credits": 4
+    },
+    "CSE-4193": {
+        "classNumber": "4193",
+        "department": "CSE",
+        "name": "Individual Studies in Computer Science and Engineering",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
+    },
+    "CSE-4253": {
+        "classNumber": "4253",
+        "department": "CSE",
+        "name": "Programming in C#",
+        "dependencies": [
+            [
+                "CSE-2122",
+                "CSE-2123",
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ]
+        ],
+        "credits": 1
+    },
+    "CSE-4998H": {
+        "classNumber": "4998H",
+        "department": "CSE",
+        "name": "Undergraduate Research in Computer Science and Engineering",
+        "dependencies": [
+            [
+                "Honors"
+            ]
+        ],
+        "credits": 1
+    },
+    "CSE-4998": {
+        "classNumber": "4998",
+        "department": "CSE",
+        "name": "Undergraduate Research in Computer Science and Engineering",
+        "dependencies": [],
+        "credits": 1
+    },
+    "CSE-4999H": {
+        "classNumber": "4999H",
+        "department": "CSE",
+        "name": "Computer Science and Engineering Research for Thesis",
+        "dependencies": [
+            [
+                "Honors standing"
+            ]
+        ],
+        "credits": 1
+    },
+    "CSE-4999": {
+        "classNumber": "4999",
+        "department": "CSE",
+        "name": "Computer Science and Engineering Research for Thesis",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
     },
     "CSE-5231": {
         "classNumber": "5231",
         "department": "CSE",
         "name": "Software Engineering Techniques",
         "dependencies": [
-            "\n\nReturn value:\n\n[[\"CSE-3901\"]",
-            " [\"CSE-"
+            [
+                "CSE-3901"
+            ],
+            [
+                "CSE-3902"
+            ],
+            [
+                "CSE-3903"
+            ]
         ],
         "credits": 2
+    },
+    "CSE-5232": {
+        "classNumber": "5232",
+        "department": "CSE",
+        "name": "Software Requirements Analysis",
+        "dependencies": [
+            [
+                "CSE-3241"
+            ],
+            [
+                "CSE-3901"
+            ],
+            [
+                "CSE-3902"
+            ],
+            [
+                "CSE-3903"
+            ],
+            [
+                "CSE-5241"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-5241": {
+        "classNumber": "5241",
+        "department": "CSE",
+        "name": "Introduction to Database Systems",
+        "dependencies": [
+            [
+                "CSE-2133",
+                "CSE-2231",
+                "CSE-2233",
+                "CSE-321"
+            ],
+            [
+                "CSE-2321",
+                "Math-2366"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-5243": {
+        "classNumber": "5243",
+        "department": "CSE",
+        "name": "Introduction to Data Mining",
+        "dependencies": [
+            [
+                "CSE-3241",
+                "CSE-5241"
+            ],
+            [
+                "CSE-2331",
+                "CSE-5331",
+                "Stat-3301",
+                "ISE-3200"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-5431": {
+        "classNumber": "5431",
+        "department": "CSE",
+        "name": "Systems II: Introduction to Operating Systems",
+        "dependencies": [
+            [
+                "CSE-5042"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-5461": {
+        "classNumber": "5461",
+        "department": "CSE",
+        "name": "Computer Networking and Internet Technologies",
+        "dependencies": [
+            [
+                "CSE-2451"
+            ],
+            [
+                "CSE-2421",
+                "ECE-2560"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-4471": {
+        "classNumber": "4471",
+        "department": "CSE",
+        "name": "Information Security",
+        "dependencies": [
+            [
+                "CSE-2231"
+            ],
+            [
+                "CSE-2321"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-5524": {
+        "classNumber": "5524",
+        "department": "CSE",
+        "name": "Computer Vision for Human-Computer Interaction",
+        "dependencies": [
+            [
+                "CSE-2331"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-5526": {
+        "classNumber": "5526",
+        "department": "CSE",
+        "name": "Introduction to Neural Networks",
+        "dependencies": [
+            [
+                "CSE-3521",
+                "CSE-5521"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-5539": {
+        "classNumber": "5539",
+        "department": "CSE",
+        "name": "Intermediate Studies in Artificial Intelligence",
+        "dependencies": [
+            [
+                "CSE-XXXX"
+            ]
+        ],
+        "credits": 2
+    },
+    "CSE-5545": {
+        "classNumber": "5545",
+        "department": "CSE",
+        "name": "Advanced Computer Graphics",
+        "dependencies": [
+            [
+                "CSE-3541",
+                "CSE-5541"
+            ]
+        ],
+        "credits": 3
+    },
+    "CSE-5914": {
+        "classNumber": "5914",
+        "department": "CSE",
+        "name": "Capstone Design: Knowledge-Based Systems",
+        "dependencies": [
+            [
+                "CSE-3521",
+                "CSE-5521"
+            ],
+            [
+                "CSE-2501",
+                "Philos-1338"
+            ],
+            [
+                "CSE-3901",
+                "CSE-3902",
+                "CSE-3903"
+            ]
+        ],
+        "credits": 4
+    },
+    "CSE-6193": {
+        "classNumber": "6193",
+        "department": "CSE",
+        "name": "Individual Studies in Computer Science and Engineering",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
+    },
+    "CSE-6539": {
+        "classNumber": "6539",
+        "department": "CSE",
+        "name": "Advanced Studies in Artificial Intelligence",
+        "dependencies": [],
+        "credits": 1
+    },
+    "CSE-6998": {
+        "classNumber": "6998",
+        "department": "CSE",
+        "name": "MS Research in Computer Science and Engineering",
+        "dependencies": [],
+        "credits": 0.5
+    },
+    "CSE-6999": {
+        "classNumber": "6999",
+        "department": "CSE",
+        "name": "MS Thesis Research in Computer Science and Engineering",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
+    },
+    "CSE-8998": {
+        "classNumber": "8998",
+        "department": "CSE",
+        "name": "PhD Research in Computer Science and Engineering",
+        "dependencies": [],
+        "credits": 0.5
+    },
+    "CSE-8999": {
+        "classNumber": "8999",
+        "department": "CSE",
+        "name": "PhD Dissertation Research in Computer Science and Engineering",
+        "dependencies": [
+            []
+        ],
+        "credits": 1
     }
 }
