@@ -28,7 +28,7 @@ function App() {
         setNodes(getNodesFromData(data));
         setLinks(getLinksFromData(data));
         console.log("Nodes and links loaded");
-        console.log(nodes);
+        console.log(getNodesFromData(data));
       })
       .catch((error) => {
         console.error("Error fetching the JSON data:", error);

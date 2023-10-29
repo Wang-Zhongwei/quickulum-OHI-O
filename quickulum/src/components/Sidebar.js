@@ -4,13 +4,34 @@ import React from "react";
 import "./Sidebar.css";
 
 // TODO: instead of copy this from algorithm.js, try importing it...
+function convertToNewFormat(nodes) {
+  let result = {};
 
-const generateSchedule = (cseJson) => {
+  for (let node of nodes) {
+    let [department, classNumber] = node.id.split("-");
+
+    let dependencies = node.dependencies.map((depGroup) =>
+      depGroup.map((dep) => dep)
+    );
+
+    result[node.id] = {
+      classNumber,
+      department,
+      name: node.title,
+      dependencies: dependencies,
+      credits: node.credits,
+    };
+  }
+
+  return result;
+}
+
+function generateSchedule(json, maxCredit) {
   const graph = {};
   const visited = {};
   const schedule = [];
 
-  for (const [courseName, courseData] of Object.entries(cseJson)) {
+  for (const [courseName, courseData] of Object.entries(json)) {
     const dependencies = courseData.dependencies || [];
     graph[courseName] = dependencies;
     visited[courseName] = 0;
@@ -50,7 +71,7 @@ const generateSchedule = (cseJson) => {
       const proposedHours =
         creditSum(Object.keys(selected), courseJson) +
         courseJson[course].credits;
-      if (proposedHours > 18) break;
+      if (proposedHours > creditMax) break;
       selected[course] = dependencies;
     }
 
@@ -68,12 +89,14 @@ const generateSchedule = (cseJson) => {
     recurse(graph, visited, inDegrees, creditMax, courseJson);
   };
 
-  recurse(graph, visited, inDegrees, 18, cseJson);
-  return schedule;
-};
+  recurse(graph, visited, inDegrees, maxCredit, json);
 
-function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
+  return schedule;
+}
+
+function Sidebar({ selectedNodes, setShowSchedule, setSchedule }) {
   const [creditGoal, setCreditGoal] = React.useState(15);
+  const [maxCredit, setMaxCredit] = React.useState(18);
 
   const totalCredits = selectedNodes.reduce(
     (sum, node) => sum + node.credits,
@@ -95,7 +118,7 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
           <div className="container">
             <ul>
               {selectedNodes.map((node) => (
-                <li key={node.id} style={{ marginBottom: '10px' }}>
+                <li key={node.id} style={{ marginBottom: "10px" }}>
                   {node.id} ({node.title})
                 </li>
               ))}
@@ -112,17 +135,40 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
             type="number"
             value={creditGoal}
             onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value < 0) {
+                setCreditGoal(0);
+              }
               setCreditGoal(parseInt(event.target.value));
               console.log("Credit goal changed to", event.target.value);
             }}
           />
         </div>
+        <div className="max-credit">
+          <label htmlFor="max-credit-input">Max Credits per Semester</label>
+          <input
+            id="max-credit-input"
+            type="number"
+            value={maxCredit}
+            onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value > 18) {
+                setMaxCredit(18);
+              } else {
+                setMaxCredit(value);
+              }
+              console.log("Max credit hours per semester changed to", value);
+            }}
+          />
+        </div>
+
         <div className="generate">
           <button
             className={isGenerateDisabled ? "" : "enabled"}
             onClick={() => {
               if (isGenerateDisabled) return;
-              setSchedule(generateSchedule(selectedNodes)); 
+              const newFormats = convertToNewFormat(selectedNodes);
+              setSchedule(generateSchedule(newFormats, maxCredit));
               console.log("Schedule generated");
               setShowSchedule(true);
             }}
@@ -134,6 +180,5 @@ function Sidebar({ selectedNodes, setShowSchedule, setSchedule}) {
     </div>
   );
 }
-
 
 export default Sidebar;
