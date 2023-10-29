@@ -1,4 +1,4 @@
-# RJ Jaiswal
+# By Rohan "RJ" Jaiswal, using the OSU API
 
 from urllib.request import urlopen
 from dotenv import load_dotenv 
