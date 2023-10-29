@@ -1,7 +1,9 @@
-import './App.css';
-import drawGraph from "./components/course_graph.js";
+/** @format */
 
-import React, { useEffect } from 'react';
+import "./App.css";
+import Graph from "./components/Graph";
+import Sidebar from "./components/Sidebar";
+import {React, useState} from "react";
 
 const nodes = [
   { id: "Math 1310", title: "Calculus I", credits: 4 },
@@ -30,14 +32,12 @@ const links = [
 ];
 
 function App() {
-  useEffect(() => {
-    console.log("useEffect is running");
-    drawGraph("#graph", nodes, links);
-  }, []);
-
+  const [selectedNodes, setSelectedNodes] = useState([]);
   return (
+    // TODO: Change background color and add a title
     <div className="App">
-      <svg id="graph" width="800" height="600"></svg>
+      <Sidebar selectedNodes={selectedNodes} />
+      <Graph nodes={nodes} links={links} setSelectedNodes={setSelectedNodes} />
     </div>
   );
 }

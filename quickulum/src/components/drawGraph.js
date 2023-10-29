@@ -1,10 +1,11 @@
 /** @format */
 import * as d3 from "d3";
 
-function drawGraph(elementId, nodesData, linksData) {
-  const svg = d3.select(elementId);
-  const width = parseInt(svg.attr("width"));
-  const height = parseInt(svg.attr("height"));
+function drawGraph(className, nodesData, linksData, handleNodeClick) {
+  const svg = d3.select(className);
+  const rect = svg.node().getBoundingClientRect();
+  const width = parseInt(rect.width);
+  const height = parseInt(rect.height);
 
   // create a color scale
   const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -36,6 +37,66 @@ function drawGraph(elementId, nodesData, linksData) {
     .attr("fill", "#666")
     .append("svg:path")
     .attr("d", "M 0 0 L 8 4 L 0 8 z");
+  
+  // define filters
+  const defs = svg.append("defs");
+
+  const filter = defs
+    .append("filter")
+    .attr("id", "dropshadow")
+    .attr("height", "200%")
+    .attr("width", "200%");
+
+  filter
+    .append("feGaussianBlur")
+    .attr("in", "SourceAlpha")
+    .attr("stdDeviation", 2)
+    .attr("result", "blur");
+
+  filter
+    .append("feOffset")
+    .attr("in", "blur")
+    .attr("dx", 0)
+    .attr("dy", 0)
+    .attr("result", "offsetBlur");
+
+  // Add these two lines to create a white shadow
+  filter.append("feFlood").attr("flood-color", "white").attr("result", "color");
+  filter
+    .append("feComposite")
+    .attr("in", "color")
+    .attr("in2", "offsetBlur")
+    .attr("operator", "in")
+    .attr("result", "shadowWithColor");
+
+  const feMerge = filter.append("feMerge");
+
+  feMerge.append("feMergeNode").attr("in", "shadowWithColor");
+  feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+
+  // define gradients
+  const gradient = defs
+    .append("linearGradient")
+    .attr("id", "nodeGradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "100%");
+
+  gradient
+    .append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#f7ac57") // Start color
+    .attr("stop-opacity", 1);
+
+  gradient
+    .append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#fe5196") // End color
+    .attr("stop-opacity", 1);
+
+
 
   // create nodes
   const nodes = svg
@@ -46,6 +107,7 @@ function drawGraph(elementId, nodesData, linksData) {
     .selectAll("circle")
     .data(nodesData)
     .join("circle")
+    .attr("opacity", 0.6) // Initial opacity for all nodes
     .attr("r", (d) => creditsScale(d.credits))
     .attr("fill", (d) => color(d.id.split(" ")[0]))
     .call(drag(simulation))
@@ -65,7 +127,10 @@ function drawGraph(elementId, nodesData, linksData) {
       return tooltip.style("visibility", "hidden");
     })
     .on("click", function (event, d) {
-      window.open(d.url);
+      // When the mouse goes over a node
+      console.log("clicked on node", d.id);
+      event.preventDefault();
+      handleNodeClick(d, this);
     }); // Hide the tooltip when the mouse is no longer over a node;
 
   // Add the links as path elements with arrowhead markers
