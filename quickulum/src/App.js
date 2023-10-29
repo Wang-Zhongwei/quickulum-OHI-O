@@ -7,15 +7,16 @@ import Schedule from "./components/Schedule";
 import React from "react";
 import { useState, useEffect } from "react";
 
-const schedule = [
-  ["CSE-1222", "CSE-1223"],
-  ["CSE-2331", "CSE-2321", "CSE-2221"],
-  ["CSE-3241", "CSE3901"],
-  ["CSE-5545", "CSE-5052"],
-];
+// const schedule = [
+//   ["CSE-1222", "CSE-1223"],
+//   ["CSE-2331", "CSE-2321", "CSE-2221"],
+//   ["CSE-3241", "CSE3901"],
+//   ["CSE-5545", "CSE-5052"],
+// ];
 
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
+  const [schedule, setSchedule] = useState([]); // TODO: replace with [] when done testing
   const [selectedNodes, setSelectedNodes] = useState([]);
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
@@ -24,10 +25,10 @@ function App() {
     fetch("./cse.json")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setNodes(getNodesFromData(data));
         setLinks(getLinksFromData(data));
         console.log("Nodes and links loaded");
+        console.log(nodes);
       })
       .catch((error) => {
         console.error("Error fetching the JSON data:", error);
@@ -39,6 +40,7 @@ function App() {
       id: key,
       title: data[key].name,
       credits: data[key].credits,
+      dependencies: data[key].dependencies,
     }));
   };
 
@@ -69,6 +71,7 @@ function App() {
       <Sidebar
         selectedNodes={selectedNodes}
         setShowSchedule={setShowSchedule}
+        setSchedule={setSchedule}
       />
       <div className="main">
         <div

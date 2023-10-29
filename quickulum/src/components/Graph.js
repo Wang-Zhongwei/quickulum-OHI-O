@@ -23,11 +23,23 @@ function Graph(props) {
         nodeElement.style("filter", ""); // Remove drop shadow
         return currentSelectedNodes.filter((n) => n.id !== node.id);
       } else {
-        // If the node is not selected, select it
-        
-        nodeElement.attr("opacity", 1); // Full opacity for selected node
-        nodeElement.style("filter", "url(#dropshadow)"); // Apply drop shadow filter
-        return [...currentSelectedNodes, node];
+        // TODO!!!: debug when get complete data
+        // If the node is not selected, select it if it meets dependency requirements
+        if (
+          node?.dependencies.length === 0 ||
+          node?.dependencies[0].length === 0 ||
+          node?.dependencies.every((group_list) =>
+            group_list.some((dep) =>
+              currentSelectedNodes.some((selected) => selected.id === dep)
+            )
+          )
+        ) {
+          nodeElement.attr("opacity", 1); // Full opacity for selected node
+          nodeElement.style("filter", "url(#dropshadow)"); // Apply drop shadow filter
+          return [...currentSelectedNodes, node];
+        } else {
+          return currentSelectedNodes;
+        }
       }
     });
   }

@@ -22,7 +22,7 @@ function drawGraph(
   // const maxThreshold = 300;
   const minDistance = 100;
   const strengthRepulsion = 30;
-  const strengthAttraction = 18;
+  const strengthAttraction = 19;
 
   const simulation = d3
     .forceSimulation(nodesData)
