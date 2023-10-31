@@ -7,21 +7,30 @@ import * as d3 from "d3";
 import "./Graph.css";
 
 // TODO: rank by course number in legen
-// TODO: hide edge behind nodes
 // TODO: fix black box border in the sidebar
 function Graph(props) {
+  const selectedNodes = props.selectedNodes;
   const setSelectedNodes = props.setSelectedNodes;
   const [colorRank, setColorRank] = useState("department");
 
   function handleNodeClick(node, clickedElement) {
     setSelectedNodes((currentSelectedNodes) => {
       const nodeElement = d3.select(clickedElement);
-
       if (currentSelectedNodes.some((selected) => selected.id === node.id)) {
-        // If the node is already selected, deselect it
-        nodeElement.attr("opacity", 0.5); // Non-selected opacity
-        nodeElement.style("filter", ""); // Remove drop shadow
-        return currentSelectedNodes.filter((n) => n.id !== node.id);
+        // If the node is already selected, deselect if no other selected nodes depend on it
+        if (
+          currentSelectedNodes.every((selected) =>
+            selected.dependencies.every(
+              (subarray) => !subarray.includes(node.id)
+            )
+          )
+        ) {
+          nodeElement.attr("opacity", 0.5); // Non-selected opacity
+          nodeElement.style("filter", ""); // Remove halo
+          return currentSelectedNodes.filter((n) => n.id !== node.id);
+        } else {
+          return currentSelectedNodes;
+        }
       } else {
         // TODO!!!: debug when get complete data
         // If the node is not selected, select it if it meets dependency requirements
@@ -35,7 +44,7 @@ function Graph(props) {
           )
         ) {
           nodeElement.attr("opacity", 1); // Full opacity for selected node
-          nodeElement.style("filter", "url(#dropshadow)"); // Apply drop shadow filter
+          nodeElement.style("filter", "url(#halo)"); // Apply halo filter
           return [...currentSelectedNodes, node];
         } else {
           return currentSelectedNodes;
@@ -48,9 +57,16 @@ function Graph(props) {
     console.log("useEffect is running");
 
     // Draw the graph
-    drawGraph(".graph", props?.nodes, props?.links, handleNodeClick, {
-      colorRank: colorRank,
-    });
+    drawGraph(
+      ".graph",
+      props?.nodes,
+      props?.links,
+      selectedNodes,
+      handleNodeClick,
+      {
+        colorRank: colorRank,
+      }
+    );
 
     // Return a cleanup function
     return () => {

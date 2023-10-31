@@ -14,6 +14,9 @@ import { useState, useEffect } from "react";
 //   ["CSE-5545", "CSE-5052"],
 // ];
 
+// TODO: bug when regenerate schedule
+// TODO: initialize network with an order: approach using different CoM
+
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [schedule, setSchedule] = useState([]); // TODO: replace with [] when done testing
@@ -28,7 +31,6 @@ function App() {
         setNodes(getNodesFromData(data));
         setLinks(getLinksFromData(data));
         console.log("Nodes and links loaded");
-        console.log(getNodesFromData(data));
       })
       .catch((error) => {
         console.error("Error fetching the JSON data:", error);
@@ -100,6 +102,7 @@ function App() {
             <Graph
               nodes={nodes}
               links={links}
+              selectedNodes={selectedNodes}
               setSelectedNodes={setSelectedNodes}
             />
           )}

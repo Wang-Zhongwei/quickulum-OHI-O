@@ -1,8 +1,10 @@
 /** @format */
 
+
 // ScheduleTimeline.js
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import "./Schedule.css";
 
 
 const ScheduleTimeline = ({ schedule, setShowSchedule }) => {
@@ -55,7 +57,7 @@ const ScheduleTimeline = ({ schedule, setShowSchedule }) => {
           .attr("x", xScale(`Semester ${i + 1}`) + 10)
           .attr("y", yPositions(course))
           .attr("dy", "0.3em")
-          .attr("font-size", "10px")
+          .attr("font-size", "12px")
           .attr("fill", "white")
           .text(course);
       });
@@ -65,11 +67,11 @@ const ScheduleTimeline = ({ schedule, setShowSchedule }) => {
   return (
     <div>
       <svg ref={ref} width={800} height={400}></svg>
-      <div>
+      <div className="modify">
         <button
           // className={isGenerateDisabled ? "" : "enabled"}
           onClick={() => {
-            console.log("Generate schedule button clicked");
+            console.log("Modify button clicked");
             setShowSchedule(false);
           }}
         >

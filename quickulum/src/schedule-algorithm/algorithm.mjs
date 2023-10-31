@@ -3,7 +3,7 @@
 // Algorithm by Rohan "RJ" Jaiswal
 // Adapted from chaudhary1337's solution on Leetcode 1494
 
-function convertToNewFormat(nodes) {
+export function convertToDict(nodes) {
   let result = {};
 
   for (let node of nodes) {
@@ -25,7 +25,7 @@ function convertToNewFormat(nodes) {
   return result;
 }
 
-function generateSchedule(json, maxCredit) {
+export function generateSchedule(json, maxCredit) {
   const graph = {};
   const visited = {};
   const schedule = [];
@@ -93,6 +93,53 @@ function generateSchedule(json, maxCredit) {
   return schedule;
 }
 
+export function topologicalSort(data) {
+  let visited = {};
+  let stack = [];
+  // let order = {};
+
+  // Create a list of visited nodes initialized to false
+  for (let course in data) {
+    visited[course] = false;
+  }
+
+  // Utility function for the depth-first traversal of the graph
+  function dfs(node) {
+    visited[node] = true;
+
+    let dependencies;
+    try {
+      dependencies = data[node].dependencies;
+    } catch (error) {
+      console.log("Error for node: " + node);
+    }
+    for (let i = 0; i < dependencies.length; i++) {
+      for (let j = 0; j < dependencies[i].length; j++) {
+        if (!visited[dependencies[i][j]]) {
+          dfs(dependencies[i][j]);
+        }
+      }
+    }
+
+    // As we backtrack from recursion, push nodes to stack
+    stack.push(node);
+  }
+
+  // Go through all nodes and perform depth-first traversal
+  for (let course in data) {
+    if (!visited[course]) {
+      dfs(course);
+    }
+  }
+
+  // while (stack.length) {
+  //   order.push(stack.pop());
+  // }
+
+  return stack;
+  // return order;
+}
+
 /**
  * Use cases:
  */
@@ -101,6 +148,3 @@ function generateSchedule(json, maxCredit) {
 
 // const schedule = generateSchedule(newFormats, 18);
 // console.log(schedule);
-
-// TODO: fix grammar
-export default {generateSchedule, convertToNewFormat};

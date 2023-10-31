@@ -1,10 +1,15 @@
 /** @format */
 import * as d3 from "d3";
+import {
+  topologicalSort,
+  convertToDict,
+} from "../schedule-algorithm/algorithm.mjs";
 
 function drawGraph(
   className,
   nodesData,
   linksData,
+  selectedNodes,
   handleNodeClick,
   options = {}
 ) {
@@ -15,15 +20,87 @@ function drawGraph(
 
   // create a color scale
   const color = d3.scaleOrdinal(d3.schemeCategory10);
-  const creditsScale = d3.scaleLinear().domain([1, 5]).range([5, 25]);
+  const creditsScale = d3.scaleLinear().domain([1, 5]).range([3, 15]);
   // create a force simulation
+
+  // add initial positions
+  const nodesDict = convertToDict(nodesData);
+  let courseOrder = topologicalSort(nodesDict);
+  let nodeSpacing = width / (courseOrder.length + 1) * 0.9; // width is the width of your SVG or canvas
+
+  for (let i = 0; i < courseOrder.length; i++) {
+    let course = courseOrder[i];
+    nodesDict[course].initialX = nodeSpacing * (i + 1);
+  }
+  nodesData.forEach(node => {
+    node.x = nodesDict[node.id].initialX;
+  });
+
+
+  const SOME_THRESHOLD = 50;
+  const SOME_REPULSION_STRENGTH = 1;
+  function customForces(nodes, links, alpha) {
+    // Iterate over all nodes
+    nodes.forEach(function (node) {
+      // Repulsion between node and edge
+      links.forEach(function (link) {
+        // Calculate a point on the link (e.g., the midpoint)
+        let mx = (link.source.x + link.target.x) / 2;
+        let my = (link.source.y + link.target.y) / 2;
+
+        let dx = mx - node.x;
+        let dy = my - node.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < SOME_THRESHOLD) {
+          // Calculate the repulsion force and apply it
+          let force = SOME_REPULSION_STRENGTH * alpha;
+          node.vx -= force * (dx / dist);
+          node.vy -= force * (dy / dist);
+        }
+      });
+    });
+
+    // // Additional force to repel link midpoints from each other
+    // links.forEach(function (linkA) {
+    //   let mxA = (linkA.source.x + linkA.target.x) / 2;
+    //   let myA = (linkA.source.y + linkA.target.y) / 2;
+
+    //   links.forEach(function (linkB) {
+    //     if (linkA === linkB) return;
+
+    //     let mxB = (linkB.source.x + linkB.target.x) / 2;
+    //     let myB = (linkB.source.y + linkB.target.y) / 2;
+
+    //     let dx = mxB - mxA;
+    //     let dy = myB - myA;
+    //     let dist = Math.sqrt(dx * dx + dy * dy);
+
+    //     if (dist < SOME_THRESHOLD) {
+    //       let force = (SOME_REPULSION_STRENGTH * alpha) / dist;
+    //       let fx = force * (dx / dist);
+    //       let fy = force * (dy / dist);
+
+    //       // Apply the repulsion force to the link endpoints
+    //       linkA.source.vx -= fx / 2;
+    //       linkA.source.vy -= fy / 2;
+    //       linkA.target.vx += fx / 2;
+    //       linkA.target.vy += fy / 2;
+
+    //       linkB.source.vx += fx / 2;
+    //       linkB.source.vy += fy / 2;
+    //       linkB.target.vx -= fx / 2;
+    //       linkB.target.vy -= fy / 2;
+    //     }
+    //   });
+    // });
+  }
 
   const minThreshold = 300;
   // const maxThreshold = 300;
   const minDistance = 100;
   const strengthRepulsion = 30;
-  const strengthAttraction = 19;
-
+  const strengthAttraction = 22;
   const simulation = d3
     .forceSimulation(nodesData)
     .force(
@@ -31,7 +108,7 @@ function drawGraph(
       d3
         .forceLink(linksData)
         .id((d) => d.id)
-        .distance(130)
+        .distance(100)
     )
     .force(
       "charge",
@@ -47,8 +124,14 @@ function drawGraph(
         .distanceMin(minDistance)
     )
 
-    .force("collide", d3.forceCollide(50))
-    .force("center", d3.forceCenter(width / 2, height / 2).strength(0.3));
+    .force("collide", d3.forceCollide(48))
+    .force("center", d3.forceCenter(width / 2, height / 2).strength(0.3))
+    .force(
+      "x",
+      d3.forceX().x((d) => nodesDict[d.id].initialX)
+    ).alphaDecay(0.05);
+
+
   svg
     .append("defs")
     .selectAll("marker")
@@ -62,7 +145,7 @@ function drawGraph(
     .attr("markerWidth", 3)
     .attr("markerHeight", 3)
     .attr("orient", "auto")
-    .attr("fill", "#666")
+    .attr("fill", "#888")
     .append("svg:path")
     .attr("d", "M 0 0 L 6 3 L 0 6 z");
 
@@ -71,7 +154,7 @@ function drawGraph(
 
   const filter = defs
     .append("filter")
-    .attr("id", "dropshadow")
+    .attr("id", "halo")
     .attr("height", "200%")
     .attr("width", "200%");
 
@@ -133,8 +216,17 @@ function drawGraph(
     .selectAll("circle")
     .data(nodesData)
     .join("circle")
-    .attr("opacity", 0.4) // Initial opacity for all nodes
+    .attr("opacity", (node) =>
+      selectedNodes.some((selected) => selected.id === node.id) ? 1 : 0.4
+    ) // Initial opacity for all nodes
+    .style("filter", (node) =>
+      selectedNodes.some((selected) => selected.id === node.id)
+        ? "url(#halo)"
+        : null
+    )
     .attr("r", (d) => creditsScale(d.credits))
+    .attr("cx", (d) => d.x)
+    .attr("cy", height / 2)
     .attr("fill", (d) => {
       const words = d.id.split("-");
       switch (options?.colorRank) {
@@ -169,7 +261,13 @@ function drawGraph(
       console.log("clicked on node", d.id);
       event.preventDefault();
       handleNodeClick(d, this);
-    }); // Hide the tooltip when the mouse is no longer over a node;
+    })
+    .on("contextmenu", function (event, d) {
+      // When the mouse goes over a node
+      console.log("right clicked on node", d.id);
+      event.preventDefault();
+      // TODO: show something
+    });
 
   let nodeLegendData = color.domain().map((d) => ({
     value: d + "-xxx",
@@ -220,7 +318,7 @@ function drawGraph(
         return "rgba(102, 102, 102, 0.58)"; // Gray with 50% opacity
       }
     })
-    .attr("stroke-width", 3)
+    .attr("stroke-width", 2)
     .attr("marker-end", "url(#end)")
     .attr("stroke-dasharray", (d) => (d.type === "coreq" ? "5,5" : null));
 
@@ -290,10 +388,28 @@ function drawGraph(
 
   // add tick function
   simulation.on("tick", () => {
-    const newLocal = "y2";
+    customForces(nodesData, linksData, 1); // not very useful
+    nodes.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+    labels.attr("x", (d) => d.x + 50).attr("y", (d) => d.y);
     links
-      .attr("x1", (d) => d.source.x)
-      .attr("y1", (d) => d.source.y)
+      .attr(
+        "x1",
+        (d) =>
+          d.source.x +
+          creditsScale(d.source.credits) *
+            Math.cos(
+              Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
+            )
+      )
+      .attr(
+        "y1",
+        (d) =>
+          d.source.y +
+          creditsScale(d.source.credits) *
+            Math.sin(
+              Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
+            )
+      )
       .attr(
         "x2",
         (d) =>
@@ -312,15 +428,12 @@ function drawGraph(
               Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
             )
       );
-
-    nodes.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
-    labels.attr("x", (d) => d.x + 50).attr("y", (d) => d.y);
   });
 
   // add drag functions
   function drag(simulation) {
     function dragstarted(event, d) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
+      if (!event.active) simulation.alphaTarget(.2).restart();
       d.fx = d.x;
       d.fy = d.y;
     }

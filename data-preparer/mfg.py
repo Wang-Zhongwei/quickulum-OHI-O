@@ -5,23 +5,31 @@ with open("cse.json", "r") as file:
 
 print(data)
 
-def verify(data: dict, subject: str):
+# TODO: make recursive call to course api
+# TODO: data cleaning script to make sure all courses have the same format 
+# 1. no honor dependencies
+# 2. all dependencies are nested lists
+def verify(data: dict):
     my_keys = data.keys()
     temp_dict = {}
     for course, info in data.items():
         for row in info["dependencies"]:
             for prereq in row:
-                if prereq.startswith(subject) and (prereq not in my_keys):
+                if (prereq not in my_keys):
+                    try:
+                        [subject, number] = prereq.split("-")
+                    except:
+                        print(prereq + " is not a valid course")
                     temp_dict[prereq] = {
-                        "classNumber": prereq.split("-")[1],
+                        "classNumber": number,
                         "department": subject,
-                        "name": "",
-                        "dependencies": [],
+                        "name": "", # TODO: get name from course api
+                        "dependencies": [[]], # TODO: get dependencies from course api
                         "credits": 3
                     }
     data.update(temp_dict)
 
-verify(data, "CSE")
+verify(data)
 
 json_data = json.dumps(data)
 

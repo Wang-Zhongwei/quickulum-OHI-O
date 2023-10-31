@@ -1,0 +1,12 @@
+.modify button {
+  background: green;
+  color: #fff;
+  border: none;
+  font-size: medium;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;;
+  justify-content: center;
+  min-width: 120px;
+  margin: 3px;
+}

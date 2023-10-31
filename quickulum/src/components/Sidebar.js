@@ -2,6 +2,7 @@
 
 import React from "react";
 import "./Sidebar.css";
+import {generateSchedule} from "../schedule-algorithm/algorithm.mjs";
 
 // TODO: instead of copy this from algorithm.js, try importing it...
 function convertToNewFormat(nodes) {
@@ -26,73 +27,73 @@ function convertToNewFormat(nodes) {
   return result;
 }
 
-function generateSchedule(json, maxCredit) {
-  const graph = {};
-  const visited = {};
-  const schedule = [];
+// function generateSchedule(json, maxCredit) {
+//   const graph = {};
+//   const visited = {};
+//   const schedule = [];
 
-  for (const [courseName, courseData] of Object.entries(json)) {
-    const dependencies = courseData.dependencies || [];
-    graph[courseName] = dependencies;
-    visited[courseName] = 0;
-  }
+//   for (const [courseName, courseData] of Object.entries(json)) {
+//     const dependencies = courseData.dependencies || [];
+//     graph[courseName] = dependencies;
+//     visited[courseName] = 0;
+//   }
 
-  const creditSum = (nodes, courseJson) => {
-    return nodes.reduce((acc, course) => acc + courseJson[course].credits, 0);
-  };
+//   const creditSum = (nodes, courseJson) => {
+//     return nodes.reduce((acc, course) => acc + courseJson[course].credits, 0);
+//   };
 
-  const inDegrees = {};
-  for (const [course, dependencies] of Object.entries(graph)) {
-    for (const row of dependencies) {
-      for (const prereq of row) {
-        inDegrees[prereq] = (inDegrees[prereq] || 0) + 1;
-      }
-    }
-  }
+//   const inDegrees = {};
+//   for (const [course, dependencies] of Object.entries(graph)) {
+//     for (const row of dependencies) {
+//       for (const prereq of row) {
+//         inDegrees[prereq] = (inDegrees[prereq] || 0) + 1;
+//       }
+//     }
+//   }
 
-  const recurse = (graph, visited, inDegrees, creditMax, courseJson) => {
-    if (!Object.values(inDegrees).some((value) => value > 0)) return;
+//   const recurse = (graph, visited, inDegrees, creditMax, courseJson) => {
+//     if (!Object.values(inDegrees).some((value) => value > 0)) return;
 
-    const nodes = Object.fromEntries(
-      Object.entries(graph).filter(
-        ([course]) => visited[course] === 0 && (inDegrees[course] || 0) === 0
-      )
-    );
+//     const nodes = Object.fromEntries(
+//       Object.entries(graph).filter(
+//         ([course]) => visited[course] === 0 && (inDegrees[course] || 0) === 0
+//       )
+//     );
 
-    const selected = {};
-    while (
-      Object.keys(nodes).length > 0 &&
-      creditSum(Object.keys(selected), courseJson) < 18
-    ) {
-      const course = Object.keys(nodes).pop();
-      const dependencies = nodes[course];
-      delete nodes[course];
+//     const selected = {};
+//     while (
+//       Object.keys(nodes).length > 0 &&
+//       creditSum(Object.keys(selected), courseJson) < 18
+//     ) {
+//       const course = Object.keys(nodes).pop();
+//       const dependencies = nodes[course];
+//       delete nodes[course];
 
-      const proposedHours =
-        creditSum(Object.keys(selected), courseJson) +
-        courseJson[course].credits;
-      if (proposedHours > creditMax) break;
-      selected[course] = dependencies;
-    }
+//       const proposedHours =
+//         creditSum(Object.keys(selected), courseJson) +
+//         courseJson[course].credits;
+//       if (proposedHours > creditMax) break;
+//       selected[course] = dependencies;
+//     }
 
-    const semester = [];
-    for (const [course, dependencies] of Object.entries(selected)) {
-      semester.push(course);
-      visited[course] = 1;
-      for (const row of dependencies) {
-        for (const course of row) {
-          inDegrees[course] -= 1;
-        }
-      }
-    }
-    schedule.unshift(semester);
-    recurse(graph, visited, inDegrees, creditMax, courseJson);
-  };
+//     const semester = [];
+//     for (const [course, dependencies] of Object.entries(selected)) {
+//       semester.push(course);
+//       visited[course] = 1;
+//       for (const row of dependencies) {
+//         for (const course of row) {
+//           inDegrees[course] -= 1;
+//         }
+//       }
+//     }
+//     schedule.unshift(semester);
+//     recurse(graph, visited, inDegrees, creditMax, courseJson);
+//   };
 
-  recurse(graph, visited, inDegrees, maxCredit, json);
+//   recurse(graph, visited, inDegrees, maxCredit, json);
 
-  return schedule;
-}
+//   return schedule;
+// }
 
 function Sidebar({ selectedNodes, setShowSchedule, setSchedule }) {
   const [creditGoal, setCreditGoal] = React.useState(15);
