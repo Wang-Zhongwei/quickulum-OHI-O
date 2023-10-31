@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./Graph.css";
 
-// TODO: rank by course number in legen
-// TODO: fix black box border in the sidebar
+// TODO: rank by course number in legend
 function Graph(props) {
   const selectedNodes = props.selectedNodes;
   const setSelectedNodes = props.setSelectedNodes;

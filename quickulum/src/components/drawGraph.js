@@ -26,14 +26,15 @@ function drawGraph(
   // add initial positions
   const nodesDict = convertToDict(nodesData);
   let courseOrder = topologicalSort(nodesDict);
-  let nodeSpacing = width / (courseOrder.length + 1) * 0.9; // width is the width of your SVG or canvas
+  const y_padding = 50;
+  let nodeSpacing = (height - 2 * y_padding) / (courseOrder.length - 1); // width is the width of your SVG or canvas
 
   for (let i = 0; i < courseOrder.length; i++) {
     let course = courseOrder[i];
-    nodesDict[course].initialX = nodeSpacing * (i + 1);
+    nodesDict[course].initialY = y_padding + nodeSpacing * i;
   }
   nodesData.forEach(node => {
-    node.x = nodesDict[node.id].initialX;
+    node.y = nodesDict[node.id].initialY;
   });
 
 
@@ -127,11 +128,11 @@ function drawGraph(
     .force("collide", d3.forceCollide(48))
     .force("center", d3.forceCenter(width / 2, height / 2).strength(0.3))
     .force(
-      "x",
-      d3.forceX().x((d) => nodesDict[d.id].initialX)
+      "y",
+      d3.forceY().y((d) => nodesDict[d.id].initialY)
     ).alphaDecay(0.05);
 
-
+  const arrowHeight = 3;
   svg
     .append("defs")
     .selectAll("marker")
@@ -143,7 +144,7 @@ function drawGraph(
     .attr("refX", 6) // Controls the shift of the arrowhead along the path
     .attr("refY", 3)
     .attr("markerWidth", 3)
-    .attr("markerHeight", 3)
+    .attr("markerHeight", arrowHeight)
     .attr("orient", "auto")
     .attr("fill", "#888")
     .append("svg:path")
@@ -269,7 +270,7 @@ function drawGraph(
       // TODO: show something
     });
 
-  let nodeLegendData = color.domain().map((d) => ({
+  let nodeLegendData = color.domain().sort().map((d) => ({
     value: d + "-xxx",
     color: color(d),
   }));
@@ -414,7 +415,7 @@ function drawGraph(
         "x2",
         (d) =>
           d.target.x -
-          creditsScale(d.target.credits) *
+          (creditsScale(d.target.credits)) *
             Math.cos(
               Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
             )
@@ -423,7 +424,7 @@ function drawGraph(
         "y2",
         (d) =>
           d.target.y -
-          creditsScale(d.target.credits) *
+          (creditsScale(d.target.credits)) *
             Math.sin(
               Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
             )

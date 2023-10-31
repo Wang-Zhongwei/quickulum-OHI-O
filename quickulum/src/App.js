@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 // ];
 
 // TODO: bug when regenerate schedule
-// TODO: initialize network with an order: approach using different CoM
 
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
