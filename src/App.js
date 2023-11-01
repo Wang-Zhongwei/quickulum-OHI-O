@@ -7,13 +7,6 @@ import Schedule from "./components/Schedule";
 import React from "react";
 import { useState, useEffect } from "react";
 
-// const schedule = [
-//   ["CSE-1222", "CSE-1223"],
-//   ["CSE-2331", "CSE-2321", "CSE-2221"],
-//   ["CSE-3241", "CSE3901"],
-//   ["CSE-5545", "CSE-5052"],
-// ];
-
 // TODO: bug when regenerate schedule
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
@@ -23,7 +16,7 @@ function App() {
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    fetch("./cse.json")
+    fetch(process.env.PUBLIC_URL + "/cse.json")
       .then((response) => response.json())
       .then((data) => {
         setNodes(getNodesFromData(data));

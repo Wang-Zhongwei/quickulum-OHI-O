@@ -7,7 +7,7 @@ import json
 import openai
 import os
 
-load_dotenv()
+load_dotenv('.env.local')
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # store URL
