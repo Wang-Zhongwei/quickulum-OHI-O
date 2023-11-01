@@ -4,7 +4,7 @@ import React from "react";
 import "./Sidebar.css";
 import {generateSchedule} from "../schedule-algorithm/algorithm.mjs";
 
-// TODO: instead of copy this from algorithm.js, try importing it...
+
 function convertToNewFormat(nodes) {
   let result = {};
 

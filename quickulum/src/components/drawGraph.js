@@ -5,6 +5,7 @@ import {
   convertToDict,
 } from "../schedule-algorithm/algorithm.mjs";
 
+// TODO: fix bug when deselecting nodes from the same
 function drawGraph(
   className,
   nodesData,
@@ -141,14 +142,14 @@ function drawGraph(
     .append("marker") // This section adds in the arrows
     .attr("id", String)
     .attr("viewBox", "0 0 6 6")
-    .attr("refX", 6) // Controls the shift of the arrowhead along the path
+    .attr("refX", 0) // Controls the shift of the arrowhead along the path
     .attr("refY", 3)
     .attr("markerWidth", 3)
     .attr("markerHeight", arrowHeight)
     .attr("orient", "auto")
     .attr("fill", "#888")
     .append("svg:path")
-    .attr("d", "M 0 0 L 6 3 L 0 6 z");
+    .attr("d", "M 6 0 L 0 3 L 6 6 z");
 
   // define filters
   const defs = svg.append("defs");
@@ -320,7 +321,7 @@ function drawGraph(
       }
     })
     .attr("stroke-width", 2)
-    .attr("marker-end", "url(#end)")
+    .attr("marker-start", "url(#end)")
     .attr("stroke-dasharray", (d) => (d.type === "coreq" ? "5,5" : null));
 
   // 1. Define the legend's data.

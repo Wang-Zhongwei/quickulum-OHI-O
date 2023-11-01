@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 // ];
 
 // TODO: bug when regenerate schedule
-
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [schedule, setSchedule] = useState([]); // TODO: replace with [] when done testing

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./Graph.css";
 
-// TODO: rank by course number in legend
 function Graph(props) {
   const selectedNodes = props.selectedNodes;
   const setSelectedNodes = props.setSelectedNodes;
@@ -31,7 +30,6 @@ function Graph(props) {
           return currentSelectedNodes;
         }
       } else {
-        // TODO!!!: debug when get complete data
         // If the node is not selected, select it if it meets dependency requirements
         if (
           node?.dependencies.length === 0 ||
@@ -103,12 +101,9 @@ function Graph(props) {
         </div>
       </div>
 
-      {/* TODO: scrollable canvas */}
-      {/* TODO: not hard code width and height */}
       <div className="graph-container">
         <svg className="graph"></svg>
       </div>
-      {/* TODO: leave area on bottom for schedule visualization*/}
     </div>
   );
 }

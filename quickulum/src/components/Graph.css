@@ -8,8 +8,8 @@
 
 .graph {
   pointer-events: auto;
-  width: 1200px;
-  height: 1500px;
+  width: max(1200px, 100%);
+  height: max(1500px, 100%);
 }
 
 .graph-container {
