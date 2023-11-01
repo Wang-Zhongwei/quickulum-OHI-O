@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Wang-Zhongwei/quickulum-OHI-O/static/css/main.94362b6e.css",
+    "main.js": "/Wang-Zhongwei/quickulum-OHI-O/static/js/main.86e43f99.js",
+    "static/js/787.059f2308.chunk.js": "/Wang-Zhongwei/quickulum-OHI-O/static/js/787.059f2308.chunk.js",
+    "index.html": "/Wang-Zhongwei/quickulum-OHI-O/index.html",
+    "main.94362b6e.css.map": "/Wang-Zhongwei/quickulum-OHI-O/static/css/main.94362b6e.css.map",
+    "main.86e43f99.js.map": "/Wang-Zhongwei/quickulum-OHI-O/static/js/main.86e43f99.js.map",
+    "787.059f2308.chunk.js.map": "/Wang-Zhongwei/quickulum-OHI-O/static/js/787.059f2308.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94362b6e.css",
+    "static/js/main.86e43f99.js"
+  ]
+}
