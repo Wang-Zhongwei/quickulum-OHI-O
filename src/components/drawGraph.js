@@ -4,6 +4,30 @@ import {
   topologicalSort,
   convertToDict,
 } from "../schedule-algorithm/algorithm.mjs";
+import showdown from "showdown";
+
+function handleContextMenu(event, d) {
+  // When the mouse goes over a node
+  console.log("right clicked on node", d.id);
+  event.preventDefault();
+  // link to osu course page
+  const [department, classNumber] = d.id.split("-");
+  window.open(
+    `https://classes.osu.edu/class-search/#/?q=${department} ${classNumber}`
+  );
+}
+
+function formatTooltipContent(d) {
+  // Create a Markdown string
+  let content = `## ${d.title} \n`;
+  content += `**Descriptions**: ${d.description ? d.description : "None"} \n`;;
+
+  // Convert the Markdown string to HTML
+  const converter = new showdown.Converter();
+  const html = converter.makeHtml(content);
+
+  return html;
+}
 
 // TODO: fix bug when deselecting nodes from the same
 function drawGraph(
@@ -27,17 +51,19 @@ function drawGraph(
   // add initial positions
   const nodesDict = convertToDict(nodesData);
   let courseOrder = topologicalSort(nodesDict);
-  const y_padding = 50;
+  const y_padding = 100;
   let nodeSpacing = (height - 2 * y_padding) / (courseOrder.length - 1); // width is the width of your SVG or canvas
+  let nodeRadiusSpacing = nodeSpacing / 2;
 
   for (let i = 0; i < courseOrder.length; i++) {
     let course = courseOrder[i];
     nodesDict[course].initialY = y_padding + nodeSpacing * i;
+    nodesDict[course].initialR = nodeRadiusSpacing * (courseOrder.length - i);
   }
-  nodesData.forEach(node => {
+  nodesData.forEach((node) => {
     node.y = nodesDict[node.id].initialY;
+    node.r = nodesDict[node.id].initialR;
   });
-
 
   const SOME_THRESHOLD = 50;
   const SOME_REPULSION_STRENGTH = 1;
@@ -125,13 +151,48 @@ function drawGraph(
         })
         .distanceMin(minDistance)
     )
+    // .force(
+    //   "charge",
+    //   d3
+    //     .forceManyBody()
+    //     .strength((d, i, nodes) => {
+    //       let intraDepartmentAttraction = 10;
+    //       let interDepartmentRepulsion = 10;
+    //       const thisDepartment = d.id.split("-")[0]; // Extract department code, assuming the format is consistent.
+
+    //       // Calculate a basic force based on distance
+    //       let basicForce =
+    //         d.distance < minThreshold
+    //           ? -strengthRepulsion
+    //           : +strengthAttraction;
+
+    //       // Add semantic gravity
+    //       for (const otherNode of nodes) {
+    //         const otherDepartment = otherNode.id.split("-")[0];
+    //         if (thisDepartment === otherDepartment) {
+    //           basicForce += intraDepartmentAttraction; // Add some attraction force if from the same department
+    //         } else {
+    //           basicForce -= interDepartmentRepulsion; // Add some repulsion force if from different departments
+    //         }
+    //       }
+
+    //       return basicForce;
+    //     })
+    //     .distanceMin(minDistance)
+    // )
 
     .force("collide", d3.forceCollide(48))
     .force("center", d3.forceCenter(width / 2, height / 2).strength(0.3))
     .force(
       "y",
       d3.forceY().y((d) => nodesDict[d.id].initialY)
-    ).alphaDecay(0.05);
+    )
+    .alphaDecay(0.05);
+  // .force(
+  //   "radial",
+  //   d3.forceRadial((d) => d.r, width / 2, height / 2).strength(0.5)
+  // );
+  // console.log(width, height);
 
   const arrowHeight = 3;
   svg
@@ -246,11 +307,11 @@ function drawGraph(
     .on("mouseover", function (event, d) {
       // When the mouse goes over a node
       return tooltip
-        .text(d.title)
+        .html(formatTooltipContent(d))
         .style("color", "red")
         .style("visibility", "visible");
     })
-    .on("mousemove", function (event) {
+    .on("mousemove", function (event, d) {
       return tooltip
         .style("top", event.pageY - 10 + "px")
         .style("left", event.pageX + 10 + "px");
@@ -264,17 +325,15 @@ function drawGraph(
       event.preventDefault();
       handleNodeClick(d, this);
     })
-    .on("contextmenu", function (event, d) {
-      // When the mouse goes over a node
-      console.log("right clicked on node", d.id);
-      event.preventDefault();
-      // TODO: show something
-    });
+    .on("contextmenu", handleContextMenu);
 
-  let nodeLegendData = color.domain().sort().map((d) => ({
-    value: d + "-xxx",
-    color: color(d),
-  }));
+  let nodeLegendData = color
+    .domain()
+    .sort()
+    .map((d) => ({
+      value: d + "-xxx",
+      color: color(d),
+    }));
 
   // 2. Create a group (`g`) element to hold the legend items.
   const nodeLegend = svg.append("g").attr("transform", "translate(140, 10)"); // Adjust this to position the legend
@@ -416,7 +475,7 @@ function drawGraph(
         "x2",
         (d) =>
           d.target.x -
-          (creditsScale(d.target.credits)) *
+          creditsScale(d.target.credits) *
             Math.cos(
               Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
             )
@@ -425,7 +484,7 @@ function drawGraph(
         "y2",
         (d) =>
           d.target.y -
-          (creditsScale(d.target.credits)) *
+          creditsScale(d.target.credits) *
             Math.sin(
               Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)
             )
@@ -435,7 +494,7 @@ function drawGraph(
   // add drag functions
   function drag(simulation) {
     function dragstarted(event, d) {
-      if (!event.active) simulation.alphaTarget(.2).restart();
+      if (!event.active) simulation.alphaTarget(0.2).restart();
       d.fx = d.x;
       d.fy = d.y;
     }

@@ -1,0 +1,362 @@
+{
+  "CSE-2111": {
+    "classNumber": "2111",
+    "department": "CSE",
+    "name": "Modeling and Problem Solving with Spreadsheets and Databases",
+    "semester": "Autumn 2023",
+    "credits": 3,
+    "description": "Spreadsheet and database modeling/programming concepts and techniques to solve business related problems; efficient/effective data handling, computational analysis and decision support. Additional topics: computer concepts, networking, project integration.\nPrereq: Math 1130 or above, or Math Placement Level L. Not open to students with credit for 1111 or 1112. This course is available for EM credit. GE quant reason math and logical anly course. GE foundation math and quant reasoning or data anyl course."
+  },
+  "CSE-1222": {
+    "classNumber": "1222",
+    "department": "CSE",
+    "name": "Introduction to Computer Programming in C++ for Engineers and Scientists",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Introduction to computer programming and to problem solving techniques using computer programs with applications in engineering and the physical sciences; algorithm development; programming lab experience.\nConcur: Math 1151, 1154, or 1161. Not open to students with credit for Engr 1281.01 or 1281.02. This course is available for EM credit."
+  },
+  "CSE-2193": {
+    "classNumber": "2193",
+    "department": "CSE",
+    "name": "Individual Studies in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Planning, conducting, and reporting a special study appropriate to the needs of the students.\r\nPrereq: Permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-2321": {
+    "classNumber": "2321",
+    "department": "CSE",
+    "name": "Foundations I: Discrete Structures",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Propositional and first-order logic; basic proof techniques; graphs, trees; analysis of algorithms; asymptotic analysis; recurrence relations.\nPrereq: 2122, 2123, or 2221; and Math 1151, or 1161. Concur (for students with credit for 2221): 2231."
+  },
+  "CSE-2231": {
+    "classNumber": "2231",
+    "department": "CSE",
+    "name": "Software II: Software Development and Design",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Data representation using hashing, search trees, and linked data structures; algorithms for sorting; using trees for language processing; component interface design; best practices in Java.\nPrereq: 2221. Concur: 2321. Not open to students with credit for 2231.01."
+  },
+  "CSE-1111": {
+    "classNumber": "1111",
+    "department": "CSE",
+    "name": "Introduction to Computer-Assisted Problem Solving",
+    "semester": "Autumn 2023",
+    "credits": 3,
+    "description": "Problem solving techniques using productivity software; spreadsheets, formulas, conditional logic; relational databases, relational algebra; word processing; data presentation; graphics.\nPrereq: Not open to students with credit for 1112 (105), 1113 (101), or 200. GE quant reason math and logical anly course. GE foundation math and quant reasoning or data anyl course."
+  },
+  "CSE-1223": {
+    "classNumber": "1223",
+    "department": "CSE",
+    "name": "Introduction to Computer Programming in Java",
+    "semester": "Autumn 2023",
+    "credits": 3,
+    "description": "Introduction to computer programming and to problem solving techniques using computer programs; programming lab experience.\nPrereq: Math 1130, 1140, 1149, 1150, or 1151, or Math Placement Level L. This course is available for EM credit."
+  },
+  "CSE-6429": {
+    "classNumber": "6429",
+    "department": "CSE",
+    "name": "Advanced Studies in Computer Architecture",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Advanced-level topics in computer architecture.\r\nRepeatable to a maximum of 24 cr hrs or 8 completions. This course is graded S/U."
+  },
+  "CSE-5052": {
+    "classNumber": "5052",
+    "department": "CSE",
+    "name": "Survey of Artificial Intelligence for Non-Majors",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Survey of the basic concepts and techniques in artificial intelligence, including problem solving, knowledge representation, and machine learning.\r\nPrereq: 1211, 1221, 1222, 1223, or 2221, or Grad standing. Not open to students with credit for 3521 (630), 4521, or 5521, or students enrolled in a CSE or CIS major."
+  },
+  "CSE-1110": {
+    "classNumber": "1110",
+    "department": "CSE",
+    "name": "Introduction to Computing Technology",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "A course of general interest giving experience with personal computer software, e.g., word processors and spreadsheets; provides fundamental computer literacy; neither teaches nor requires programming.\nPrereq: Not open to students with credit for 1111 or 1113."
+  },
+  "CSE-2221": {
+    "classNumber": "2221",
+    "department": "CSE",
+    "name": "Software I: Software Components",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Intellectual foundations of software engineering; design-by-contract principles; mathematical modeling of software functionality; component-based software from client perspective; layered data representation.\nPrereq: 1212, 1221, 1222, 1223, 1224, Engr 1221, 1281.01H, 1281.02H, or CSE Placement Level A. Prereq or concur: Math 1151, 1161.01, or 1161.02. Not open to students with credit for 5022. This course is available for EM credit."
+  },
+  "CSE-2331": {
+    "classNumber": "2331",
+    "department": "CSE",
+    "name": "Foundations II: Data Structures and Algorithms",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Design/analysis of algorithms and data structures; divide-and-conquer; sorting and selection, search trees, hashing, graph algorithms, string matching; probabilistic analysis; randomized algorithms; NP-completeness.\nPrereq: 2231, 2321, and Stat 3460 or 3470, and enrollment in CSE, CIS, ECE, Data Analytics, or Math major, or CIS minor. Concur: Math 3345. Not open to students with credit for 5331."
+  },
+  "CSE-2421": {
+    "classNumber": "2421",
+    "department": "CSE",
+    "name": "Systems I: Introduction to Low-Level Programming and Computer Organization",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Introduction to computer architecture at machine and assembly language level; pointers and addressing; C programming at machine level; computer organization.\nPrereq: 2122, 2123, or 2231; and 2321 or Math 2566; and enrollment in CSE, CIS, Data Analytics, Music (BS), Eng Physics, or Math major."
+  },
+  "CSE-2451": {
+    "classNumber": "2451",
+    "department": "CSE",
+    "name": "Advanced C Programming",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Advanced C features for students with significant programming experience in another language.\r\nPrereq: 2221 or 222. Concur: 2231 or 321. Not open to students with credit for 2421."
+  },
+  "CSE-2501": {
+    "classNumber": "2501",
+    "department": "CSE",
+    "name": "Social, Ethical, and Professional Issues in Computing",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Social, ethical, and professional issues facing computing professionals; ethical principles; discussion of case studies.\nPrereq: 2122, 2123, or 2231; and Gen Ed Writing: Level 2; and enrollment in CSE or CIS major, or Information Security minor. Not open to students with credit for 5501."
+  },
+  "CSE-3241": {
+    "classNumber": "3241",
+    "department": "CSE",
+    "name": "Introduction to Database Systems",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Database systems use, logical design, entity-relationship model, normalization, query languages and SQL, relational algebra and calculus, object relational databases, XML, active databases; database design project.\nPrereq: 2123 or 2231; and 2321, or 2111 and Math 2366; and enrollment in CSE, CIS, ISE, Data Analytics, ECE, Engr Physics, or Business Info Sys majors, or CIS minor. Not open to students with credit for 5241."
+  },
+  "CSE-3341": {
+    "classNumber": "3341",
+    "department": "CSE",
+    "name": "Principles of Programming Languages",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Formal languages and grammars; recursive descent parsing; data types, expressions, control structures, parameter passing; compilers and interpreters; memory management; functional programming principles.\nPrereq: 2231, 2331 (680), and 2421, and 3901 (560), 3902, or 3903. Not open to students with credit for 5341 (655)."
+  },
+  "CSE-3461": {
+    "classNumber": "3461",
+    "department": "CSE",
+    "name": "Computer Networking and Internet Technologies",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Computer networks, communication protocols, Internet TCP/IP and applications, wireless communications and network security.\nPrereq: 2421; or 3430; or 2451 and ECE 2560; and enrollment in CIS, CSE, ECE, Engr Physics, or Data Analytics major. Prereq or concur: 2431 or 3430. Not open to students with credit for 5461."
+  },
+  "CSE-3521": {
+    "classNumber": "3521",
+    "department": "CSE",
+    "name": "Survey of Artificial Intelligence I: Basic Techniques",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Survey of basic concepts and techniques in artificial intelligence, including problem solving, knowledge representation, and machine learning.\nPrereq: 2331 or 5331; and Math 2174 or 2568 or 4568 or 5520H; and Stat 3201 or 3450 or 3460 or 3470 or 4201 or Math 4530 or 5530H; and enrollment in CSE, CIS, ECE or Data Analytics major. Not open to students with credit for 5521."
+  },
+  "CSE-3901": {
+    "classNumber": "3901",
+    "department": "CSE",
+    "name": "Project: Design, Development, and Documentation of Web Applications",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Intensive group project involving design, development, and documentation of a web application; client-side and server-side scripting; communication skills emphasized; builds programming maturity.\nPrereq: 2231; and 2321; and 2421 or 3430, or 2451 and ECE 2560; and enrollment in CSE, CIS, ECE, or Data Analytics major."
+  },
+  "CSE-3902": {
+    "classNumber": "3902",
+    "department": "CSE",
+    "name": "Project: Design, Development, and Documentation of Interactive Systems",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Intensive group project involving design, development, and documentation of an interactive software system, a 2D interactive game; communication skills emphasized; builds programming maturity.\nPrereq: 2231; and 2321; and 2421 or 3430, or 2451 and ECE 2560; and enrollment in CSE, CIS, ECE, Music (BS), or Data Analytics major."
+  },
+  "CSE-4193": {
+    "classNumber": "4193",
+    "department": "CSE",
+    "name": "Individual Studies in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Designed to give the student an opportunity to pursue special studies not otherwise offered.\r\nPrereq: Permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-4253": {
+    "classNumber": "4253",
+    "department": "CSE",
+    "name": "Programming in C#",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "C# programming for students well-versed in programming with another object-oriented language.\nPrereq: 2122, 2123, or 2231; and 2321; and enrollment in CSE, CIS, ECE, Engr Physics, or Data Analytics major, or CIS minor. This course is graded S/U."
+  },
+  "CSE-4998H": {
+    "classNumber": "4998H",
+    "department": "CSE",
+    "name": "Undergraduate Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Opportunity for undergraduate student to conduct research in Computer Science and Engineering.\r\nPrereq: Honors standing, and permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-4998": {
+    "classNumber": "4998",
+    "department": "CSE",
+    "name": "Undergraduate Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Opportunity for undergraduate student to conduct research in Computer Science and Engineering.\r\nPrereq: Permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-4999H": {
+    "classNumber": "4999H",
+    "department": "CSE",
+    "name": "Computer Science and Engineering Research for Thesis",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Supervised research and project work arranged individually for honors students.\r\nPrereq: Honors standing, and permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-4999": {
+    "classNumber": "4999",
+    "department": "CSE",
+    "name": "Computer Science and Engineering Research for Thesis",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Supervised research and project work arranged individually.\r\nPrereq: Permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-5231": {
+    "classNumber": "5231",
+    "department": "CSE",
+    "name": "Software Engineering Techniques",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Software engineering issues, techniques, methodologies and technologies; software lifecycle activities: requirements analysis, architecture, design, testing, deployment, maintenance; project management; enterprise software systems; frameworks.\nPrereq: 3901 or 3902 or 3903 (560). Not open to students with credit for 3231 (757)."
+  },
+  "CSE-5232": {
+    "classNumber": "5232",
+    "department": "CSE",
+    "name": "Software Requirements Analysis",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Information systems analysis; object-oriented analysis models and tools; use cases, system modeling using UML; requirements specification development; term project.\nPrereq: 3241 or 3901 or 3902 or 3903 (560) or 5241 (670). Not open to students with credit for 3232 (616)."
+  },
+  "CSE-5241": {
+    "classNumber": "5241",
+    "department": "CSE",
+    "name": "Introduction to Database Systems",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Database systems use; logical design; entity-relationship model; normalization; query languages and SQL; relational algebra and calculus; object relational databases; XML; active databases; database design project.\r\nPrereq: 2133 or 2231 or 2233 (314) or 321, and 2321 or Math 2366 (366). Not open to students with credit for 3241 (670)."
+  },
+  "CSE-5243": {
+    "classNumber": "5243",
+    "department": "CSE",
+    "name": "Introduction to Data Mining",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Knowledge discovery, data mining, data preprocessing, data transformations; clustering, classification, frequent pattern mining, anomaly detection, graph and network analysis; applications.\nPrereq: 3241 or 5241; and 2331, 5331, Stat 3301, or ISE 3200; and enrollment in CSE, CIS, ECE, Data Analytics, or ISE major."
+  },
+  "CSE-5431": {
+    "classNumber": "5431",
+    "department": "CSE",
+    "name": "Systems II: Introduction to Operating Systems",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Introduction to operating system concepts: process, CPU scheduling, memory management, file system and storage, and multi-threaded programming.\nPrereq: 5042 or equiv. Not open to students with credit for 2431 or 660."
+  },
+  "CSE-5461": {
+    "classNumber": "5461",
+    "department": "CSE",
+    "name": "Computer Networking and Internet Technologies",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Computer networks, communication protocols, Internet TCP/IP and applications, wireless communications and network security.\nPrereq: 2451, and 2421 or ECE 2560 (265). Concur: 2431. Not open to students with credit for 3461 (677)."
+  },
+  "CSE-4471": {
+    "classNumber": "4471",
+    "department": "CSE",
+    "name": "Information Security",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Introduction to security of digital information; threats and attacks; regulations; risk management; attack detection and response; cryptography; forensics; technical training and certifications.\nPrereq: 2231 and 2321; and enrollment in CSE, CIS, ECE, or Data Analytics major, or Information Security or CIS minor."
+  },
+  "CSE-5524": {
+    "classNumber": "5524",
+    "department": "CSE",
+    "name": "Computer Vision for Human-Computer Interaction",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Computer vision algorithms for use in human-computer interactive systems; image formation, image features, segmentation, shape analysis, object tracking, motion calculation, and applications.\nPrereq: 2331, or Sr or Grad standing. Not open to students with credit for 634."
+  },
+  "CSE-5526": {
+    "classNumber": "5526",
+    "department": "CSE",
+    "name": "Introduction to Neural Networks",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Survey of fundamental methods and techniques of neural networks; single- and multi-layer perceptrons; radial-basis function networks; support vector machines; recurrent networks; supervised and unsupervised learning.\nPrereq: 3521 or 5521. Not open to students with credit for 779."
+  },
+  "CSE-5539": {
+    "classNumber": "5539",
+    "department": "CSE",
+    "name": "Intermediate Studies in Artificial Intelligence",
+    "semester": "Spring 2024",
+    "credits": 2,
+    "description": "Intermediate-level topics in artificial intelligence.\nRepeatable to a maximum of 12 cr hrs or 6 completions."
+  },
+  "CSE-5545": {
+    "classNumber": "5545",
+    "department": "CSE",
+    "name": "Advanced Computer Graphics",
+    "semester": "Spring 2024",
+    "credits": 3,
+    "description": "Advanced topics in computer graphics; image synthesis, lighting and rendering, sampling and material properties, volume rendering.\nPrereq: 3541 or 5541."
+  },
+  "CSE-5914": {
+    "classNumber": "5914",
+    "department": "CSE",
+    "name": "Capstone Design: Knowledge-Based Systems",
+    "semester": "Spring 2024",
+    "credits": 4,
+    "description": "Capstone design project; conceptual and technical design; theory and practice of knowledge-based systems; teamwork, written and oral communication skills.\nPrereq: 3521 or 5521, and 2501 or Philos 1338, and CSE 3901 or 3902 or 3903, and second writing course; or Grad standing."
+  },
+  "CSE-6193": {
+    "classNumber": "6193",
+    "department": "CSE",
+    "name": "Individual Studies in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Designed to give the student an opportunity to pursue special studies not otherwise offered.\r\nPrereq: Permission of instructor. Repeatable to a maximum of 10 cr hrs or 10 completions. This course is graded S/U."
+  },
+  "CSE-6539": {
+    "classNumber": "6539",
+    "department": "CSE",
+    "name": "Advanced Studies in Artificial Intelligence",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "Advanced-level topics in artificial intelligence.\r\nRepeatable to a maximum of 24 cr hrs or 8 completions. This course is graded S/U."
+  },
+  "CSE-6998": {
+    "classNumber": "6998",
+    "department": "CSE",
+    "name": "MS Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 0.5,
+    "description": "MS research in Computer Science and Engineering.\r\nRepeatable to a maximum of 10 completions. This course is graded S/U."
+  },
+  "CSE-6999": {
+    "classNumber": "6999",
+    "department": "CSE",
+    "name": "MS Thesis Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "MS research in Computer Science and Engineering, leading to a thesis.\r\nRepeatable to a maximum of 10 completions. This course is graded S/U."
+  },
+  "CSE-8998": {
+    "classNumber": "8998",
+    "department": "CSE",
+    "name": "PhD Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 0.5,
+    "description": "PhD research in Computer Science and Engineering.\r\nRepeatable to a maximum of 10 completions. This course is graded S/U."
+  },
+  "CSE-8999": {
+    "classNumber": "8999",
+    "department": "CSE",
+    "name": "PhD Dissertation Research in Computer Science and Engineering",
+    "semester": "Spring 2024",
+    "credits": 1,
+    "description": "PhD research in Computer Science and Engineering, leading to a dissertation.\r\nRepeatable to a maximum of 10 completions. This course is graded S/U."
+  }
+}

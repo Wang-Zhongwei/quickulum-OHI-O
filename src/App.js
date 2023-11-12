@@ -8,6 +8,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 // TODO: bug when regenerate schedule
+// TODO: generate schedule in nodes format
+// TODO: add link to course page 
+// TODO: add course description
+// TODO: add visual guide 
+
 function App() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [schedule, setSchedule] = useState([]); // TODO: replace with [] when done testing
@@ -33,6 +38,8 @@ function App() {
       id: key,
       title: data[key].name,
       credits: data[key].credits,
+      description: data[key].description,
+      semester: data[key].semester,
       dependencies: data[key].dependencies,
     }));
   };
